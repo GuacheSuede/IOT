@@ -1,50 +1,65 @@
+
 var GrovePi = require('node-grovepi').GrovePi
+
 var Commands = GrovePi.commands
 var Board = GrovePi.board
 
+// put led in port D3
+var led = new GrovePi.sensors.base.Digital(4);
 
 
-var board = new Board({
-    debug: true,
-    onError: function(err) {
-        console.log('Something wrong just happened')
-        console.log(err)
-    },
-    onInit: function(res) {
-        if (res) {
-            console.log('GrovePi Version :: ' + board.version())
+// status will tell us if the led is on or off
+var status = 0;
 
-            var lightSensor = new LightAnalogSensor(2)
-            console.log('Light Analog Sensor (start watch)')
-            lightSensor.on('change', function(res) {
-                console.log('Light onChange value=' + res)
-            })
-            lightSensor.watch()
-        }
+
+function toggle() {
+
+    if (status == 0){
+        console.log("toggle off");
+        led.write(1)
+
+        status = 1;
     }
-})
+    else {
+        console.log("toggle on");
+        led.write(0)
+        status = 0;
+    }
+}
+
+function start() {
+    console.log('starting')
+
+    board = new Board({
+        debug: true,
+        onError: function(err) {
+            console.log('TEST ERROR')
+        },
+
+        onInit: function(res) {
+            console.log("OnInit");
+            if (res) {
+                // call toggle every second
+                setInterval(toggle, 3000)
+            }
+        }
+    })
+
+    board.init();
+}
 
 
+// called on Ctrl-C.
+// close the board and clean up
+function onExit(err) {
+    console.log('ending')
+    board.close()
+    process.removeAllListeners()
+    process.exit()
+    if (typeof err != 'undefined')
+        console.log(err)
+}
 
-
-
-
-
-
-
-
-
-// const fastify = require('fastify')({
-//     logger: true
-// })
-//
-// // Declare a route
-// fastify.get('/', (request, reply) => {
-//     reply.send({ hello: 'world' })
-// })
-//
-// // Run the server!
-// fastify.listen(3000, (err, address) => {
-//     if (err) throw err
-//     fastify.log.info(`server listening on ${address}`)
-// })
+start()
+// catches ctrl+c event
+process.on('SIGINT', onExit)
