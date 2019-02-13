@@ -1,0 +1,7 @@
+<div class="container" *ngFor="let graph of graphs">
+    <h4>Data:     {{graph.data}}</h4>
+    <h4>Value:     {{graph.value}}</h4>
+    <h4>Time: {{graph.time}}</h4>
+    <button class="btn" (click)="removegraph(graph._id)">Delete</button> 
+    <button class="btn" (click)="openModal(graph)">Update</button>    
+</div>

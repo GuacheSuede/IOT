@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { GraphService } from './graph.service';
+import { Router } from '@angular/router';
 import {trigger, animate, style, group, animateChild, query, stagger, transition, state} from '@angular/animations';
 @Component({
   selector: 'app-root',

@@ -6,15 +6,19 @@ import { AppComponent } from './app.component';
 import { GasesComponent } from './gases/gases.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { AllComponent } from './all/all.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GasesComponent
+    GasesComponent,
+    AllComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

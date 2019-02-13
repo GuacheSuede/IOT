@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GraphService } from '../graph.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gases',
@@ -6,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gases.component.sass']
 })
 export class GasesComponent implements OnInit {
-
-  constructor() { }
 
   ngOnInit() {
   }
