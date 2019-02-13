@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b846528-36e6-43c5-a115-9a923865081c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/src/app/app.component.sass" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/src/app/app.component.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/src/app/gases/gases.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/src/app/gases/gases.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/src/environments/environment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/node-grovepi/sensors/temperatureAnalogSensor.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/node-grovepi/sensors/temperatureAnalogSensor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
-    </list>
+    <list default="true" id="7b846528-36e6-43c5-a115-9a923865081c" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -29,8 +16,8 @@
       <file pinned="true" current-in-tab="true">
         <entry file="remoteDeploymentFS://&lt;72d258ad-2f09-44cc-bba0-6d516d7f2158&gt;/home/pi/IOT/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="241" column="34" selection-start-line="241" selection-start-column="34" selection-end-line="241" selection-end-column="34" />
+            <state relative-caret-position="248">
+              <caret line="344" column="24" selection-end-line="511" />
             </state>
           </provider>
         </entry>
@@ -190,12 +177,12 @@
       <workItem from="1549879241831" duration="1058000" />
       <workItem from="1549972897910" duration="10814000" />
       <workItem from="1549989483512" duration="15780000" />
-      <workItem from="1550009493303" duration="5330000" />
+      <workItem from="1550009493303" duration="6048000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32982000" />
+    <option name="totallyTimeSpent" value="33700000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />

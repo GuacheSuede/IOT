@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var faker = require('faker');
+var moment = require('moment')
 
 var GrovePi = require('node-grovepi').GrovePi
 
@@ -8,8 +9,9 @@ var Board = GrovePi.board
 
 // put led in port D3
 // var led = new GrovePi.sensors.base.Digital(4);
-var temperature = new GrovePi.sensors.TemperatureAnalog(0)
-var led_bar = new GrovePi.sensors.LedBarDigital(3)
+// var temperature = new GrovePi.sensors.TemperatureAnalog(0)
+// var led_bar = new GrovePi.sensors.LedBarDigital(3, 0)
+var sound = new GrovePi.sensors.base.Analog(2)
 var metrics = [
     'Isovaleric Acid',
     'Ammonia',
@@ -37,9 +39,6 @@ var metrics = [
     'Hand Wash Amount of water used an hour - list which Hand Wash',
     'Hand Wash Amount of water used a day - list which Hand Wash',
     'Hand Wash Amount of water used ever - list which Hand Wash',
-    'Urinal Amount of water used an hour - list which Urinal',
-    'Urinal Amount of water used a day - list which Urinal',
-    'Urinal Amount of water used ever  - list which Urinal',
     'Toilet Bowl Amount of water used an hour - list which Stall',
     'Toilet Bowl Amount of water used a day - list which Stall',
     'Toilet Bowl Amount of water used ever  - list which Stall',
@@ -227,7 +226,7 @@ function generate_temp(){
         if (choice < 15 && data_value > 1){
             data_value = (parseFloat(data_value) + parseFloat(0.05)).toFixed(4)
             var g = new Graph({
-                data: "gas_"+name,
+                data: "temperature",
                 value: data_value,
                 time: new Date()
             })
@@ -237,7 +236,7 @@ function generate_temp(){
         if (choice > 85 && data_value < 99){
             data_value = (parseFloat(data_value) - parseFloat(0.05)).toFixed(4)
             var g = new Graph({
-                data: "gas_"+name,
+                data: "temperature",
                 value: data_value,
                 time: new Date()
             })
@@ -246,7 +245,7 @@ function generate_temp(){
 
         if (85 > choice > 15){
             var g = new Graph({
-                data: "gas_"+name,
+                data: "temperature",
                 value: data_value,
                 time: new Date()
             })
@@ -255,6 +254,113 @@ function generate_temp(){
     },500)
 }
 
+
+function generate_water_amt_urinal(urinal_name){
+    var data_value =  faker.random.number({
+        'min': 15,
+        'max': 40
+    })
+    setInterval(() =>  {
+        var choice = faker.random.number({
+            'min': 0,
+            'max': 100
+        })
+        // overtime increase
+        if (choice % 50 === 0) {
+            // flood\
+            for (var iiii = 0; iiii < 50*60; ++iiii) {
+                var g = new Graph({
+                    data: "urinal_"+urinal_name,
+                    value: data_value,
+                    time: moment().add(iiii, 'seconds')
+                })
+                g.save()
+            }
+        }
+        if (choice < 15 && data_value > 1){
+            data_value = (parseFloat(data_value) + parseFloat(0.05)).toFixed(4)
+            var g = new Graph({
+                data: "urinal_"+urinal_name,
+                value: data_value,
+                time: new Date()
+            })
+            g.save()
+        }
+
+        if (choice > 85 && data_value < 99){
+            data_value = (parseFloat(data_value) - parseFloat(0.05)).toFixed(4)
+            var g = new Graph({
+                data: "urinal_"+urinal_name,
+                value: data_value,
+                time: new Date()
+            })
+            g.save()
+        }
+
+        if (85 > choice > 15){
+            var g = new Graph({
+                data: "urinal_"+urinal_name,
+                value: data_value,
+                time: new Date()
+            })
+            g.save()
+        }
+    },500)
+}
+
+
+function generate_water_amt_sink(sink_name){
+    var data_value =  faker.random.number({
+        'min': 15,
+        'max': 40
+    })
+    setInterval(() =>  {
+        var choice = faker.random.number({
+            'min': 0,
+            'max': 100
+        })
+        // overtime increase
+        if (choice % 50 === 0) {
+            // flood\
+            for (var iiii = 0; iiii < 50*60; ++iiii) {
+                var g = new Graph({
+                    data: "sink_"+sink_name,
+                    value: data_value,
+                    time: moment().add(iiii, 'seconds')
+                })
+                g.save()
+            }
+        }
+        if (choice < 15 && data_value > 1){
+            data_value = (parseFloat(data_value) + parseFloat(0.05)).toFixed(4)
+            var g = new Graph({
+                data: "sink_"+sink_name,
+                value: data_value,
+                time: new Date()
+            })
+            g.save()
+        }
+
+        if (choice > 85 && data_value < 99){
+            data_value = (parseFloat(data_value) - parseFloat(0.05)).toFixed(4)
+            var g = new Graph({
+                data: "sink_"+sink_name,
+                value: data_value,
+                time: new Date()
+            })
+            g.save()
+        }
+
+        if (85 > choice > 15){
+            var g = new Graph({
+                data: "sink_"+sink_name,
+                value: data_value,
+                time: new Date()
+            })
+            g.save()
+        }
+    },500)
+}
 
 
 function start() {
@@ -327,6 +433,21 @@ function start() {
         // }, 500)
         // we're connected!
     });
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }cd
+        }
+    }
+    function toggleLevel(i){
+        for (var ii = i; ii > 0; --ii){
+            console.log(ii)
+            sleep(500)
+            led_bar.toggleLed(ii)
+        }
+    }
 
 
     board = new Board({
@@ -335,12 +456,26 @@ function start() {
             console.log('TEST ERROR')
         },
 
+
         onInit: function(res) {
             console.log("OnInit");
             if (res) {
-                led_bar.init()
-                led_bar.setLevel(5)
-                led_bar.toggleLed(5);
+                // sound.start()
+                setInterval(()=>{
+                    console.log( sound.read()
+                    )
+                }, 3000)
+                // toggleLevel(9)
+                // led_bar.init()
+                // toggleLevel(9)
+                // led_bar.toggleLed(1)
+                // led_bar.toggleLed(2)
+                // toggleLevel(9)
+                // led_bar.setOrientation(0)
+
+
+                // led_bar.setLevel()
+                // led_bar.toggleLed(9);
                 // console.log("0")
                 // setInterval(()=> {
                 //     var temperature = temperature.read()
@@ -364,7 +499,7 @@ function start() {
 // close the board and clean up
 function onExit(err) {
     console.log('Exiting')
-    // board.close()
+    board.close()
     process.removeAllListeners()
     process.exit()
     if (typeof err != 'undefined')
@@ -374,3 +509,4 @@ function onExit(err) {
 start()
 // catches ctrl+c event
 process.on('SIGINT', onExit)
+
