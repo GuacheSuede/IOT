@@ -10,7 +10,7 @@ const fastify = require('fastify')({
 const { WebClient } = require('@slack/client');
 
 // An access token (from your Slack app or custom integration - xoxp, xoxb)
-const token = "xoxb-547274422003-550668159494-jQi9WAGEuMoyFpmlOD0MNaKa";
+const token = "xoxb-547274422003-550668159494-ipH9KEW1xFeduOcDvWorA0NV";
   
 const web = new WebClient(token);
   

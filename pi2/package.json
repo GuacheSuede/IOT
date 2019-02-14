@@ -1,0 +1,19 @@
+{
+  "name": "iot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "faker": "^4.1.0",
+    "fastify": "^1.14.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.11",
+    "node-grovepi": "^2.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
